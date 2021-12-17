@@ -2,7 +2,7 @@
 Apollo GraphQL, Typescript, AWS API Gateway, AWS Lambdas, AWS Lambda Layer and Terraform for IaC
 
 ## Scalable out of the box
-Fully scalable Apollo GrpahQL that runs on AWS Lambda exposed buy an Rest AWS API Gateway. AWS API Gateway can support up to 3,600,000 concurrent connections the default value is 500 and about Lambdas there is no maximum concurrency limit.
+Fully scalable Apollo GrpahQL that runs on AWS Lambda exposed buy an Rest AWS API Gateway. AWS API Gateway can support up to 3,600,000 concurrent connections the default value is 500 and about Lambdas there is no maximum concurrency limit the default account limit is 1000 per account.
 
 ## Initializing the project
 ```bash
