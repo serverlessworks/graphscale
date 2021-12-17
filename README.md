@@ -1,5 +1,5 @@
-# GraphScale
-Scalable GraphQL with Apollo GraphQL, Typescript, AWS API Gateway, AWS Lambdas, AWS Lambda Layer and Terraform
+# GraphScale - GraphQL at scale
+Apollo GraphQL, Typescript, AWS API Gateway, AWS Lambdas, AWS Lambda Layer and Terraform for IaC
 
 ## Initializing the project
 ```bash
