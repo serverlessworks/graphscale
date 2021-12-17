@@ -1,13 +1,12 @@
 module "graphql_lambda_function" {
-  source        = "terraform-aws-modules/lambda/aws"
-  version       = "2.26.0"
-  function_name = "${var.environment}-${var.project}-graphql-lambda-function"
-  handler       = "index.handler"
-  runtime       = var.lambda_config.runtime
-  timeout       = var.lambda_config.timeout
-  memory_size   = var.lambda_config.memory_size
-  publish       = true
-
+  source                 = "terraform-aws-modules/lambda/aws"
+  version                = "2.26.0"
+  function_name          = "${var.environment}-${var.project}-graphql"
+  handler                = "index.handler"
+  runtime                = var.lambda_config.runtime
+  timeout                = var.lambda_config.timeout
+  memory_size            = var.lambda_config.memory_size
+  publish                = true
   create_package         = false
   local_existing_package = "./builds/lambda.zip"
 
@@ -35,6 +34,8 @@ module "graphql_lambda_function" {
     PROJECT = var.project
     OWNER   = var.owner
   }
+
+  provisioned_concurrent_executions = var.lambda_config.provisioned
 }
 
 module "graphql_lambda_layer" {

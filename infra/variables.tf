@@ -33,10 +33,12 @@ variable "lambda_config" {
     runtime     = string
     timeout     = number
     memory_size = number
+    provision   = number
   })
   default = {
     runtime     = "nodejs14.x"
     timeout     = 60
     memory_size = 128
+    provision   = 0
   }
 }

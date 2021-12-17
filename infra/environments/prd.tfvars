@@ -12,4 +12,5 @@ lambda_config = {
   runtime     = "nodejs14.x"
   timeout     = 30
   memory_size = 1024
+  provision   = 0
 }
