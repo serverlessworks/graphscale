@@ -6,15 +6,26 @@ Apollo GraphQL, Typescript, AWS API Gateway, AWS Lambdas, AWS Lambda Layer and T
 yarn
 ```
 
-## Deployment the project
+## Local dev
+```bash
+yarn start
+```
+
+## Deploying to AWS
 ```bash
 yarn deploy
 ```
 
 ## Testing
 ```bash
-curl -X POST \
+curl -X POST https://xxxxxxxxxx.execute-api.eu-west-2.amazonaws.com/prd/graphql \
 -H 'Content-Type: application/json' \
---data-binary '{"query":"query($input: HelloQueryInput){hello(input: $input){msg  }}","variables":{"input":{"firstName":"test","lastName":"test"}}}' \
-https://xxxxxxxx.execute-api.eu-west-2.amazonaws.com/prd/graphql
+-d @- <<'EOF'
+{
+    "query": "query($input: HelloQueryInput) {
+        hello(input: $input){ msg }
+    }",
+    "variables": {"input": {"firstName": "test", "lastName": "test"}}
+}
+EOF
 ```
