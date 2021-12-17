@@ -1,0 +1,10 @@
+
+schema: ./src/schemas/*.gql
+generates:
+  ./src/types.ts:
+    plugins:
+      - "typescript"
+    config:
+      contextType: ../context#Context
+      enumsAsTypes: true
+      namingConvention: keep

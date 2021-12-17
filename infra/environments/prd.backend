@@ -1,0 +1,2 @@
+# bucket = "graph-scale-production-state-backend"
+# key    = "graphscale.tfstate"

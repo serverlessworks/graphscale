@@ -1,0 +1,21 @@
+type Query {
+  hello(input: HelloQueryInput): Message!
+}
+
+type Mutation {
+  hello(input: HelloMutationInput): Message!
+}
+
+type Message {
+  msg: String!
+}
+
+input HelloQueryInput {
+  firstName: String!
+  lastName: String!
+}
+
+input HelloMutationInput {
+  firstName: String!
+  lastName: String!
+}
