@@ -15,7 +15,8 @@
     "lambda:layer": "mkdir -p dist/nodejs && yarn install --production --frozen-lockfile --no-bin-links --modules-folder dist/nodejs/node_modules && cd dist && zip -r ../infra/builds/nodejs.zip nodejs",
     "tf:init": "cd ./infra && terraform init -backend-config=environments/prd.backend",
     "tf:plan": "cd ./infra && terraform plan -var-file=environments/prd.tfvars -out prd.plan -no-color",
-    "tf:apply": "cd ./infra && terraform apply prd.plan"
+    "tf:apply": "cd ./infra && terraform apply prd.plan",
+    "tf:destroy": "cd ./infra && terraform destroy -var-file=environments/prd.tfvars"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.3.0",

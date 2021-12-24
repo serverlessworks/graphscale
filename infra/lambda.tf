@@ -1,7 +1,11 @@
+locals {
+  lambda_name = "${var.environment}-${var.project}-graphql"
+}
+
 module "graphql_lambda_function" {
   source                 = "terraform-aws-modules/lambda/aws"
   version                = "2.26.0"
-  function_name          = "${var.environment}-${var.project}-graphql"
+  function_name          = local.lambda_name
   handler                = "index.handler"
   runtime                = var.lambda_config.runtime
   timeout                = var.lambda_config.timeout
@@ -19,9 +23,24 @@ module "graphql_lambda_function" {
   }
 
   allowed_triggers = {
-    APIGatewayPost = {
+    apiGateway = {
       service    = "apigateway"
       source_arn = "${aws_api_gateway_rest_api.api.execution_arn}/*/POST/graphql"
+    }
+  }
+
+  attach_cloudwatch_logs_policy = false
+  policy_statements = {
+    logging = {
+      actions = [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ]
+      resources = [
+        "arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${local.lambda_name}:*",
+        "arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${local.lambda_name}:*:*",
+      ]
     }
   }
 
@@ -35,7 +54,7 @@ module "graphql_lambda_function" {
     OWNER   = var.owner
   }
 
-  provisioned_concurrent_executions = var.lambda_config.provisioned
+  provisioned_concurrent_executions = var.lambda_config.provision
 }
 
 module "graphql_lambda_layer" {
